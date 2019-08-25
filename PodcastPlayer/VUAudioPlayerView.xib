@@ -8,6 +8,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="VUAudioPlayerView" customModule="PodcastPlayer" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="diN-y0-ff7"/>
+                <outlet property="labelTimeElapsed" destination="9e0-uv-5XS" id="A2N-dM-GsD"/>
+                <outlet property="labelTimeLeft" destination="jwL-tb-nqw" id="zEL-uG-SbG"/>
+                <outlet property="playbackSlider" destination="m9o-4L-QNm" id="RPC-KY-KjE"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -69,10 +72,29 @@
                     <rect key="frame" x="8" y="67" width="464" height="19"/>
                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Kpj-gQ-HNj"/>
                 </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-uv-5XS">
+                    <rect key="frame" x="10" y="52" width="84" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time" id="2py-3P-djk">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jwL-tb-nqw">
+                    <rect key="frame" x="416" y="52" width="56" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Duration" id="4vL-au-5Xv">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="9e0-uv-5XS" firstAttribute="baseline" secondItem="jwL-tb-nqw" secondAttribute="baseline" id="5Al-Od-6wa"/>
+                <constraint firstItem="x7X-ht-s51" firstAttribute="top" secondItem="9e0-uv-5XS" secondAttribute="bottom" constant="3" id="7o7-E3-kEb"/>
                 <constraint firstAttribute="trailing" secondItem="JOv-Vw-AdB" secondAttribute="trailing" constant="73" id="8r1-9B-3vk"/>
                 <constraint firstItem="m9o-4L-QNm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="ABi-Qo-0js"/>
+                <constraint firstItem="9e0-uv-5XS" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="12" id="EcN-Co-jmz"/>
                 <constraint firstItem="YDB-bf-plT" firstAttribute="leading" secondItem="x7X-ht-s51" secondAttribute="trailing" constant="12" symbolic="YES" id="Fcp-v0-BZA"/>
                 <constraint firstItem="CpW-Z7-wkf" firstAttribute="leading" secondItem="YDB-bf-plT" secondAttribute="trailing" constant="12" symbolic="YES" id="GUG-hO-bS5"/>
                 <constraint firstItem="YDB-bf-plT" firstAttribute="baseline" secondItem="CpW-Z7-wkf" secondAttribute="baseline" id="KeC-Et-jVf"/>
@@ -84,6 +106,7 @@
                 <constraint firstItem="JOv-Vw-AdB" firstAttribute="leading" secondItem="CpW-Z7-wkf" secondAttribute="trailing" constant="6" id="qaq-9v-fuL"/>
                 <constraint firstAttribute="trailing" secondItem="m9o-4L-QNm" secondAttribute="trailing" constant="10" id="rKJ-7D-CMT"/>
                 <constraint firstItem="m9o-4L-QNm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="tdy-Ye-K5l"/>
+                <constraint firstItem="jwL-tb-nqw" firstAttribute="trailing" secondItem="m9o-4L-QNm" secondAttribute="trailing" id="y9E-yC-LU0"/>
                 <constraint firstItem="x7X-ht-s51" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="73" id="yxe-B2-HYD"/>
             </constraints>
             <point key="canvasLocation" x="-1244" y="37"/>

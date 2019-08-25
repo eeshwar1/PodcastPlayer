@@ -21,7 +21,20 @@ class VUAudioPlayerView: NSView {
     
     @IBOutlet var contentView: NSView!
     
+    @IBOutlet var playbackSlider: NSSlider!
+    
+    @IBOutlet var labelTimeElapsed: NSTextField!
+    @IBOutlet var labelTimeLeft: NSTextField!
+    
+    
+    
     var audioPlayer: AVPlayer?
+    
+    var playbackTimer: Timer?
+    
+    var currentItemDurationSeconds: Int = 0
+    
+    var formattedTimeZero = formattedTime(seconds: 0)
     
     required init?(coder decoder: NSCoder) {
         
@@ -62,6 +75,7 @@ class VUAudioPlayerView: NSView {
             self.addConstraints(newConstraints)
         }
         
+        
     
         
     }
@@ -71,7 +85,15 @@ class VUAudioPlayerView: NSView {
         
         
         if let url = URL(string: audioFilePath) {
-            self.audioPlayer = AVPlayer(url: url)
+            
+            let playerItem: AVPlayerItem = AVPlayerItem(url: url)
+            self.audioPlayer = AVPlayer(playerItem: playerItem)
+            
+            let duration: CMTime = playerItem.asset.duration
+            self.currentItemDurationSeconds = Int(duration.seconds)
+            print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
+            self.labelTimeLeft.stringValue = formattedTime(seconds: self.currentItemDurationSeconds)
+            self.labelTimeElapsed.stringValue = formattedTimeZero
         }
         else
         {
@@ -86,6 +108,12 @@ class VUAudioPlayerView: NSView {
     {
         if let player = self.audioPlayer {
             player.play()
+            
+            playbackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlaybackSlider), userInfo: nil, repeats: true)
+            // RunLoop.main.add(playbackTimer!, forMode: RunLoop.Mode.common)
+            self.playbackSlider.doubleValue = 0.0
+            self.playbackSlider.maxValue = 100.0
+            self.labelTimeLeft.stringValue =  formattedTime(seconds: Int(player.currentItem!.duration.seconds))
         }
     }
     
@@ -94,9 +122,32 @@ class VUAudioPlayerView: NSView {
         if let player = self.audioPlayer {
             player.pause()
             player.seek(to: CMTimeMake(value: 0, timescale: 1))
+            if let timer = self.playbackTimer {
+                timer.invalidate()
+            }
+            self.playbackSlider.floatValue = 0.0
+            self.labelTimeLeft.stringValue = formattedTime(seconds: self.currentItemDurationSeconds)
+            self.labelTimeElapsed.stringValue = formattedTimeZero
         }
     }
     
+    @objc func updatePlaybackSlider()
+    {
+        if let player = self.audioPlayer {
+            
+            if let currentItem = player.currentItem {
+                let currentValue: Double = player.currentTime().seconds * 100/currentItem.duration.seconds
+                self.playbackSlider.doubleValue = currentValue
+                let durationElapsed = Int(player.currentTime().seconds)
+                let durationLeft = self.currentItemDurationSeconds - durationElapsed
+                labelTimeElapsed.stringValue = formattedTime(seconds: durationElapsed )
+                labelTimeLeft.stringValue = formattedTime(seconds: durationLeft)
+                
+            }
+            
+        }
+        
+    }
     @IBAction func seekForward30s(sender: NSButton)
     {
         if let player = self.audioPlayer {
