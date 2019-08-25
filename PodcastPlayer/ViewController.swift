@@ -45,8 +45,11 @@ class ViewController: NSViewController   {
         feedParser.parseFeed(url: url) { (rssItems) in
             self.rssItems = rssItems
             
+        
+            
         OperationQueue.main.addOperation(
             { self.collectionView.reloadData()
+              self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url)
                 
         })
             

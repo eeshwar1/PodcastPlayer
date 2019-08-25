@@ -97,13 +97,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-tu-2as">
-                                <rect key="frame" x="10" y="10" width="460" height="393"/>
+                                <rect key="frame" x="10" y="10" width="460" height="466"/>
                                 <clipView key="contentView" id="qn5-Tj-gzn">
-                                    <rect key="frame" x="1" y="1" width="458" height="391"/>
+                                    <rect key="frame" x="1" y="1" width="458" height="464"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="aSw-p4-Zha">
-                                            <rect key="frame" x="0.0" y="0.0" width="458" height="391"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="458" height="464"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="RMc-Qs-cKH">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -129,9 +129,9 @@
                                 </scroller>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="iVP-KK-pFB" customClass="VUAudioPlayerView" customModule="PodcastPlayer" customModuleProvider="target">
-                                <rect key="frame" x="10" y="413" width="460" height="233"/>
+                                <rect key="frame" x="10" y="486" width="460" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="233" id="fEN-4q-NFi"/>
+                                    <constraint firstAttribute="height" constant="160" id="fEN-4q-NFi"/>
                                 </constraints>
                             </customView>
                         </subviews>
