@@ -25,9 +25,13 @@ class ViewController: NSViewController   {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         configureCollectionView()
+        
+        //self.view.addSubview(audioPlayerView)
+        
         
         // fetchData("https://developer.apple.com/news/rss/news.rss")
         
@@ -122,10 +126,10 @@ extension ViewController: NSCollectionViewDataSource {
 extension ViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        
+      
         if let podCastItem =  collectionView.item(at: indexPaths.first!) as? PodCastItemView {
         
-            self.audioPlayerView.loadAudio(audioFilePath: podCastItem.url!, type: .url)
+          self.audioPlayerView.loadAudio(audioFilePath: podCastItem.url!, type: .url)
         }
     
     

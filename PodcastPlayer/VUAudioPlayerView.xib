@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="VUAudioPlayerView" customModule="PodcastPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="diN-y0-ff7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YDB-bf-plT">
+                    <rect key="frame" x="158" y="21" width="91" height="32"/>
+                    <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6JJ-O0-Bee">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="playAudioWithSender:" target="-2" id="cwC-0y-UfZ"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CpW-Z7-wkf">
+                    <rect key="frame" x="249" y="21" width="85" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="73" id="puz-OH-teB"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MWC-LT-GSp">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="stopPlayingAudioWithSender:" target="-2" id="lKb-hf-zGl"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JOv-Vw-AdB">
+                    <rect key="frame" x="328" y="21" width="85" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="73" id="rgS-Mj-YjC"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="&gt; 30s" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B0n-p4-kwK">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="seekForward30sWithSender:" target="-2" id="q4V-pp-aP4"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-ht-s51">
+                    <rect key="frame" x="67" y="21" width="91" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="79" id="NIw-2C-7r5"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="&lt; 30s" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JZJ-8g-ngE">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="seekBackwards30sWithSender:" target="-2" id="yuw-Xj-FFJ"/>
+                    </connections>
+                </button>
+                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-4L-QNm">
+                    <rect key="frame" x="8" y="67" width="464" height="19"/>
+                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Kpj-gQ-HNj"/>
+                </slider>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="JOv-Vw-AdB" secondAttribute="trailing" constant="73" id="8r1-9B-3vk"/>
+                <constraint firstItem="m9o-4L-QNm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="ABi-Qo-0js"/>
+                <constraint firstItem="YDB-bf-plT" firstAttribute="leading" secondItem="x7X-ht-s51" secondAttribute="trailing" constant="12" symbolic="YES" id="Fcp-v0-BZA"/>
+                <constraint firstItem="CpW-Z7-wkf" firstAttribute="leading" secondItem="YDB-bf-plT" secondAttribute="trailing" constant="12" symbolic="YES" id="GUG-hO-bS5"/>
+                <constraint firstItem="YDB-bf-plT" firstAttribute="baseline" secondItem="CpW-Z7-wkf" secondAttribute="baseline" id="KeC-Et-jVf"/>
+                <constraint firstItem="CpW-Z7-wkf" firstAttribute="baseline" secondItem="JOv-Vw-AdB" secondAttribute="baseline" id="LKY-F7-E0c"/>
+                <constraint firstItem="m9o-4L-QNm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="YVm-4U-l8a"/>
+                <constraint firstItem="m9o-4L-QNm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="bSq-GL-qQR"/>
+                <constraint firstItem="YDB-bf-plT" firstAttribute="top" secondItem="m9o-4L-QNm" secondAttribute="bottom" constant="20" id="ecQ-T1-UkO"/>
+                <constraint firstItem="x7X-ht-s51" firstAttribute="baseline" secondItem="YDB-bf-plT" secondAttribute="baseline" id="mSh-kk-n9j"/>
+                <constraint firstItem="JOv-Vw-AdB" firstAttribute="leading" secondItem="CpW-Z7-wkf" secondAttribute="trailing" constant="6" id="qaq-9v-fuL"/>
+                <constraint firstAttribute="trailing" secondItem="m9o-4L-QNm" secondAttribute="trailing" constant="10" id="rKJ-7D-CMT"/>
+                <constraint firstItem="m9o-4L-QNm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="tdy-Ye-K5l"/>
+                <constraint firstItem="x7X-ht-s51" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="73" id="yxe-B2-HYD"/>
+            </constraints>
+            <point key="canvasLocation" x="-1244" y="37"/>
+        </customView>
+    </objects>
+</document>

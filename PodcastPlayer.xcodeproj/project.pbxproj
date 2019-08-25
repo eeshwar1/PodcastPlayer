@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6509BE1723119DBA000FF196 /* VUAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6509BE1623119DBA000FF196 /* VUAudioPlayerView.swift */; };
+		6509BE1923119DD2000FF196 /* VUAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6509BE1823119DD2000FF196 /* VUAudioPlayerView.xib */; };
 		65D07251218DF899001B22F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D07250218DF899001B22F7 /* AppDelegate.swift */; };
 		65D07253218DF899001B22F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D07252218DF899001B22F7 /* ViewController.swift */; };
 		65D07255218DF89B001B22F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D07254218DF89B001B22F7 /* Assets.xcassets */; };
@@ -14,12 +16,11 @@
 		65D07261218F6B40001B22F7 /* PodCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D07260218F6B40001B22F7 /* PodCast.swift */; };
 		65D07265218F6E8B001B22F7 /* PodCastItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D07264218F6E8B001B22F7 /* PodCastItemView.swift */; };
 		65D07267218F9AD8001B22F7 /* PodCastItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D07266218F9AD8001B22F7 /* PodCastItem.xib */; };
-		65D60124225C527B000A4659 /* VUAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D60122225C527A000A4659 /* VUAudioPlayerView.swift */; };
-		65D60125225C527B000A4659 /* VUAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65D60123225C527A000A4659 /* VUAudioPlayerView.xib */; };
-		65D60127225C52BA000A4659 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D60126225C52BA000A4659 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6509BE1623119DBA000FF196 /* VUAudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUAudioPlayerView.swift; sourceTree = "<group>"; };
+		6509BE1823119DD2000FF196 /* VUAudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VUAudioPlayerView.xib; sourceTree = "<group>"; };
 		65D0724D218DF899001B22F7 /* PodcastPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D07250218DF899001B22F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D07252218DF899001B22F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,9 +31,6 @@
 		65D07260218F6B40001B22F7 /* PodCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodCast.swift; sourceTree = "<group>"; };
 		65D07264218F6E8B001B22F7 /* PodCastItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodCastItemView.swift; sourceTree = "<group>"; };
 		65D07266218F9AD8001B22F7 /* PodCastItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodCastItem.xib; sourceTree = "<group>"; };
-		65D60122225C527A000A4659 /* VUAudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUAudioPlayerView.swift; sourceTree = "<group>"; };
-		65D60123225C527A000A4659 /* VUAudioPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VUAudioPlayerView.xib; sourceTree = "<group>"; };
-		65D60126225C52BA000A4659 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +63,11 @@
 		65D0724F218DF899001B22F7 /* PodcastPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				65D60126225C52BA000A4659 /* Extensions.swift */,
-				65D60122225C527A000A4659 /* VUAudioPlayerView.swift */,
-				65D60123225C527A000A4659 /* VUAudioPlayerView.xib */,
+				65D07254218DF89B001B22F7 /* Assets.xcassets */,
+				6509BE1623119DBA000FF196 /* VUAudioPlayerView.swift */,
+				6509BE1823119DD2000FF196 /* VUAudioPlayerView.xib */,
 				65D07250218DF899001B22F7 /* AppDelegate.swift */,
 				65D07252218DF899001B22F7 /* ViewController.swift */,
-				65D07254218DF89B001B22F7 /* Assets.xcassets */,
 				65D07256218DF89B001B22F7 /* Main.storyboard */,
 				65D07266218F9AD8001B22F7 /* PodCastItem.xib */,
 				65D07264218F6E8B001B22F7 /* PodCastItemView.swift */,
@@ -140,10 +137,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6509BE1923119DD2000FF196 /* VUAudioPlayerView.xib in Resources */,
 				65D07255218DF89B001B22F7 /* Assets.xcassets in Resources */,
 				65D07258218DF89B001B22F7 /* Main.storyboard in Resources */,
 				65D07267218F9AD8001B22F7 /* PodCastItem.xib in Resources */,
-				65D60125225C527B000A4659 /* VUAudioPlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,10 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D07265218F6E8B001B22F7 /* PodCastItemView.swift in Sources */,
-				65D60127225C52BA000A4659 /* Extensions.swift in Sources */,
-				65D60124225C527B000A4659 /* VUAudioPlayerView.swift in Sources */,
 				65D07253218DF899001B22F7 /* ViewController.swift in Sources */,
 				65D07251218DF899001B22F7 /* AppDelegate.swift in Sources */,
+				6509BE1723119DBA000FF196 /* VUAudioPlayerView.swift in Sources */,
 				65D07261218F6B40001B22F7 /* PodCast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,7 +294,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 74757A785Z;
+				DEVELOPMENT_TEAM = XZ9VWRV6AW;
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,7 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 74757A785Z;
+				DEVELOPMENT_TEAM = XZ9VWRV6AW;
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
