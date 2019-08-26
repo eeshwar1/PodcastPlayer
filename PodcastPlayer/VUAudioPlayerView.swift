@@ -23,6 +23,8 @@ class VUAudioPlayerView: NSView {
     
     @IBOutlet var playbackSlider: NSSlider!
     
+    @IBOutlet var buttonPlay: NSButton!
+    
     @IBOutlet var labelTimeElapsed: NSTextField!
     @IBOutlet var labelTimeLeft: NSTextField!
     
@@ -94,6 +96,7 @@ class VUAudioPlayerView: NSView {
             print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
             self.labelTimeLeft.stringValue = formattedTime(seconds: self.currentItemDurationSeconds)
             self.labelTimeElapsed.stringValue = formattedTimeZero
+            self.buttonPlay.title = "Play"
         }
         else
         {
@@ -107,13 +110,25 @@ class VUAudioPlayerView: NSView {
     @IBAction func playAudio(sender: NSButton)
     {
         if let player = self.audioPlayer {
-            player.play()
             
-            playbackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlaybackSlider), userInfo: nil, repeats: true)
-            // RunLoop.main.add(playbackTimer!, forMode: RunLoop.Mode.common)
-            self.playbackSlider.doubleValue = 0.0
-            self.playbackSlider.maxValue = 100.0
-            self.labelTimeLeft.stringValue =  formattedTime(seconds: Int(player.currentItem!.duration.seconds))
+            if player.rate == 0 {
+                player.play()
+                playbackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlaybackSlider), userInfo: nil, repeats: true)
+                // RunLoop.main.add(playbackTimer!, forMode: RunLoop.Mode.common)
+                self.playbackSlider.doubleValue = 0.0
+                self.playbackSlider.maxValue = 100.0
+                self.labelTimeLeft.stringValue =  formattedTime(seconds: Int(player.currentItem!.duration.seconds))
+                buttonPlay.title = "Pause"
+                
+            }
+            else {
+                player.pause()
+                buttonPlay.title = "Play"
+                playbackTimer?.invalidate()
+            }
+           
+            
+     
         }
     }
     
@@ -137,22 +152,36 @@ class VUAudioPlayerView: NSView {
             
             if let currentItem = player.currentItem {
                 let currentValue: Double = player.currentTime().seconds * 100/currentItem.duration.seconds
+                
                 self.playbackSlider.doubleValue = currentValue
                 let durationElapsed = Int(player.currentTime().seconds)
                 let durationLeft = self.currentItemDurationSeconds - durationElapsed
                 labelTimeElapsed.stringValue = formattedTime(seconds: durationElapsed )
-                labelTimeLeft.stringValue = formattedTime(seconds: durationLeft)
+                labelTimeLeft.stringValue = "-" + formattedTime(seconds: durationLeft)
                 
             }
             
         }
         
     }
+    
+    @IBAction func playbackSliderValueChanged(_ playbackSlider: NSSlider) {
+        
+        let newTime =  (currentItemDurationSeconds * Int(playbackSlider.intValue))/100
+        if let player = self.audioPlayer {
+            player.seek(to: CMTimeMake(value: Int64(newTime), timescale: 1))
+        }
+        print("Slider Value: \(playbackSlider.intValue)")
+    
+    }
     @IBAction func seekForward30s(sender: NSButton)
     {
         if let player = self.audioPlayer {
             
-            print("Current Time: \(player.currentTime())")
+            let currentTime = player.currentTime()
+            let seekToTime = currentTime + CMTimeMake(value: 30, timescale: 1)
+            player.seek(to: seekToTime)
+            
             
         }
     }
@@ -160,7 +189,9 @@ class VUAudioPlayerView: NSView {
     {
         if let player = self.audioPlayer {
             
-            print("Current Time: \(player.currentTime())")
+            let currentTime = player.currentTime()
+            let seekToTime = currentTime - CMTimeMake(value: 30, timescale: 1)
+            player.seek(to: seekToTime)
             
         }
         

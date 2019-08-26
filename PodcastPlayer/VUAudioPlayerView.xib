@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="VUAudioPlayerView" customModule="PodcastPlayer" customModuleProvider="target">
             <connections>
+                <outlet property="buttonPlay" destination="YDB-bf-plT" id="G6c-1C-dUV"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="diN-y0-ff7"/>
                 <outlet property="labelTimeElapsed" destination="9e0-uv-5XS" id="A2N-dM-GsD"/>
                 <outlet property="labelTimeLeft" destination="jwL-tb-nqw" id="zEL-uG-SbG"/>
@@ -61,6 +62,9 @@
                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-4L-QNm">
                     <rect key="frame" x="8" y="96" width="454" height="19"/>
                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Kpj-gQ-HNj"/>
+                    <connections>
+                        <action selector="playbackSliderValueChanged:" target="-2" id="Ugc-CT-kT4"/>
+                    </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-uv-5XS">
                     <rect key="frame" x="8" y="71" width="64" height="17"/>
@@ -104,19 +108,18 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="o3w-a6-UTL" firstAttribute="top" secondItem="x7X-ht-s51" secondAttribute="bottom" constant="20" id="0hC-zS-CeD"/>
+                <constraint firstItem="YDB-bf-plT" firstAttribute="top" secondItem="x7X-ht-s51" secondAttribute="top" id="40O-lC-Rb6"/>
                 <constraint firstAttribute="trailing" secondItem="JOv-Vw-AdB" secondAttribute="trailing" constant="73" id="8r1-9B-3vk"/>
                 <constraint firstItem="m9o-4L-QNm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="ABi-Qo-0js"/>
                 <constraint firstItem="YDB-bf-plT" firstAttribute="leading" secondItem="x7X-ht-s51" secondAttribute="trailing" constant="10" id="Fcp-v0-BZA"/>
                 <constraint firstItem="CpW-Z7-wkf" firstAttribute="leading" secondItem="YDB-bf-plT" secondAttribute="trailing" constant="10" id="GUG-hO-bS5"/>
                 <constraint firstItem="9e0-uv-5XS" firstAttribute="top" secondItem="m9o-4L-QNm" secondAttribute="bottom" constant="10" id="GVL-kK-Fh8"/>
                 <constraint firstItem="CpW-Z7-wkf" firstAttribute="top" secondItem="YDB-bf-plT" secondAttribute="top" id="LKY-F7-E0c"/>
-                <constraint firstItem="x7X-ht-s51" firstAttribute="top" secondItem="YDB-bf-plT" secondAttribute="top" id="Pfo-vW-O9u"/>
+                <constraint firstItem="x7X-ht-s51" firstAttribute="top" secondItem="m9o-4L-QNm" secondAttribute="bottom" constant="20" id="Pfo-vW-O9u"/>
                 <constraint firstItem="m9o-4L-QNm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="YVm-4U-l8a"/>
                 <constraint firstItem="JOv-Vw-AdB" firstAttribute="top" secondItem="YDB-bf-plT" secondAttribute="top" id="Z8M-gh-5Bs"/>
                 <constraint firstAttribute="bottom" secondItem="o3w-a6-UTL" secondAttribute="bottom" constant="20" id="dpH-ty-leA"/>
                 <constraint firstItem="9e0-uv-5XS" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="eL2-Mu-o70"/>
-                <constraint firstItem="YDB-bf-plT" firstAttribute="top" secondItem="m9o-4L-QNm" secondAttribute="bottom" constant="20" id="ecQ-T1-UkO"/>
                 <constraint firstItem="jwL-tb-nqw" firstAttribute="top" secondItem="9e0-uv-5XS" secondAttribute="top" id="km5-Ge-ffg"/>
                 <constraint firstItem="o3w-a6-UTL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="o7K-K6-O55"/>
                 <constraint firstItem="JOv-Vw-AdB" firstAttribute="leading" secondItem="YDB-bf-plT" secondAttribute="trailing" constant="89" id="qaq-9v-fuL"/>
