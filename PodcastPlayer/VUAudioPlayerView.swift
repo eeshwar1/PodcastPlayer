@@ -28,6 +28,7 @@ class VUAudioPlayerView: NSView {
     @IBOutlet var labelTimeElapsed: NSTextField!
     @IBOutlet var labelTimeLeft: NSTextField!
     
+    @IBOutlet var labelTitle: NSTextField!
     
     
     var audioPlayer: AVPlayer?
@@ -82,7 +83,7 @@ class VUAudioPlayerView: NSView {
         
     }
 
-    func loadAudio(audioFilePath: String, type: filePathType)
+    func loadAudio(audioFilePath: String, type: filePathType, title: String?)
     {
         
         
@@ -93,14 +94,21 @@ class VUAudioPlayerView: NSView {
             
             let duration: CMTime = playerItem.asset.duration
             self.currentItemDurationSeconds = Int(duration.seconds)
-            print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
+            // print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
             self.labelTimeLeft.stringValue = formattedTime(seconds: self.currentItemDurationSeconds)
             self.labelTimeElapsed.stringValue = formattedTimeZero
             self.buttonPlay.title = "Play"
+            
+            if let title = title {
+                labelTitle.stringValue = title
+            }
+            else {
+                labelTitle.stringValue = ""
+            }
         }
         else
         {
-            print("Error accessing URL")
+            print("Error accessing URL: \(audioFilePath)")
         }
         
        

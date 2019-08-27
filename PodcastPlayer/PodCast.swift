@@ -79,7 +79,9 @@ class FeedParser : NSObject, XMLParserDelegate {
             parser.parse()
         }
         
+        
         task.resume()
+     
     }
     
     
@@ -88,6 +90,7 @@ class FeedParser : NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         
         self.currentElement = elementName
+        // print("elementName: \(elementName)")
         if self.currentElement == "item" {
             self.currentTitle = ""
             self.currentDescription = ""
@@ -97,8 +100,10 @@ class FeedParser : NSObject, XMLParserDelegate {
         self.attributeDict = attributeDict
         
     }
+  
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
+       // print("currentElement: \(currentElement)")
         switch currentElement
         {
             
@@ -110,7 +115,12 @@ class FeedParser : NSObject, XMLParserDelegate {
         }
     }
     
+    
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        if elementName == "enclosure" {
+            self.currentUrl += self.attributeDict["url"] ?? ""
+        }
         if elementName == "item" {
             
             let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate, url: currentUrl)

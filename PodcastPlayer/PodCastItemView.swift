@@ -21,6 +21,7 @@ class PodCastItemView: NSCollectionViewItem {
     }
     var url: String?
    
+   
     
     var feedItem: RSSItem! {
         
@@ -30,6 +31,7 @@ class PodCastItemView: NSCollectionViewItem {
             lblDatePub.stringValue = feedItem.pubDate
             lblDescription.stringValue = feedItem.description
             url = feedItem.url
+            title = feedItem.title
             
         }
     }

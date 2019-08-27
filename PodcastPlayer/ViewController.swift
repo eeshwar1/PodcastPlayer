@@ -10,12 +10,16 @@ import Cocoa
 
 class ViewController: NSViewController   {
     
-
     @IBOutlet weak var collectionView: NSCollectionView!
     
     @IBOutlet var audioPlayerView: VUAudioPlayerView!
     
     private var rssItems: [RSSItem]?
+    
+    private var podCasts: [String: String] = ["The Talk Show": "https://daringfireball.net/thetalkshow/rss",
+                                              "ATP":"http://atp.fm/episodes?format=rss",
+                                              "Swift Over Coffee": "https://anchor.fm/s/572fc68/podcast/rss"]
+    
     
     var itemSizeFactor: CGFloat = 1.0
     {
@@ -35,7 +39,14 @@ class ViewController: NSViewController   {
         
         // fetchData("https://developer.apple.com/news/rss/news.rss")
         
-        fetchData(url: "https://daringfireball.net/thetalkshow/rss")
+        // fetchData(url: "https://daringfireball.net/thetalkshow/rss")
+        
+        // fetchData(url: "http://atp.fm/episodes?format=rss")
+        
+        if let podCastURL = self.podCasts["Swift Over Coffee"] {
+            fetchData(url: podCastURL)
+        }
+        
     }
 
    
@@ -49,7 +60,8 @@ class ViewController: NSViewController   {
             
         OperationQueue.main.addOperation(
             { self.collectionView.reloadData()
-              self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url)
+                // print(rssItems[0])
+                self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url, title: rssItems[0].title)
                 
         })
             
@@ -132,7 +144,7 @@ extension ViewController: NSCollectionViewDelegate {
       
         if let podCastItem =  collectionView.item(at: indexPaths.first!) as? PodCastItemView {
         
-          self.audioPlayerView.loadAudio(audioFilePath: podCastItem.url!, type: .url)
+            self.audioPlayerView.loadAudio(audioFilePath: podCastItem.url!, type: .url, title: podCastItem.title)
         }
     
     

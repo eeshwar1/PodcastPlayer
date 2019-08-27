@@ -57,6 +57,7 @@
 		65D07244218DF899001B22F7 = {
 			isa = PBXGroup;
 			children = (
+				65D07254218DF89B001B22F7 /* Assets.xcassets */,
 				65D0724F218DF899001B22F7 /* PodcastPlayer */,
 				65D0724E218DF899001B22F7 /* Products */,
 			);
@@ -74,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				65A7ABB42313162900483511 /* common */,
-				65D07254218DF89B001B22F7 /* Assets.xcassets */,
 				6509BE1623119DBA000FF196 /* VUAudioPlayerView.swift */,
 				6509BE1823119DD2000FF196 /* VUAudioPlayerView.xib */,
 				65D07250218DF899001B22F7 /* AppDelegate.swift */,
