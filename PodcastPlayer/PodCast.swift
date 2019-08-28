@@ -110,7 +110,6 @@ class FeedParser : NSObject, XMLParserDelegate {
             case "title": currentTitle  += string
             case "description": currentDescription += string
             case "pubDate": currentPubDate += string
-            case "enclosure": currentUrl += attributeDict["url"] ?? ""
             default: break
         }
     }
