@@ -38,10 +38,13 @@ class ViewController: NSViewController   {
 
         configureCollectionView()
     
-        
         self.buttonPopupPodCast.addItems(withTitles: Array(self.podCasts.keys))
-        
         self.buttonPopupPodCast.selectItem(at: 0)
+        
+        if let firstPodCastItem =  self.podCasts.first {
+            fetchData(url: firstPodCastItem.value)
+        }
+        
         
     }
 
@@ -52,15 +55,14 @@ class ViewController: NSViewController   {
         feedParser.parseFeed(url: url) { (rssItems) in
             self.rssItems = rssItems
             
-        
-            
-        OperationQueue.main.addOperation(
-            { self.collectionView.reloadData()
-                print(self.rssItems![0])
-                self.collectionView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: .top)
-                self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url, title: rssItems[0].title)
-                
-        })
+            OperationQueue.main.addOperation(
+                { self.collectionView.reloadData()
+                    // print(self.rssItems![0])
+                    self.collectionView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: .top)
+                    self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url, title: rssItems[0].title)
+                    
+                }
+            )
             
         }
     }
@@ -84,10 +86,6 @@ class ViewController: NSViewController   {
                                                left: hInset,
                                                bottom: vInset,
                                                right: hInset)
-        
-        // flowLayout.minimumInteritemSpacing = collectionView.frame.width / 2000
-        
-        // flowLayout.minimumLineSpacing = collectionView.frame.height / 2000
         
         
         collectionView.collectionViewLayout = flowLayout
