@@ -14,11 +14,15 @@ class ViewController: NSViewController   {
     
     @IBOutlet var audioPlayerView: VUAudioPlayerView!
     
+    @IBOutlet var buttonPopupPodCast: NSPopUpButton!
+    
     private var rssItems: [RSSItem]?
     
     private var podCasts: [String: String] = ["The Talk Show": "https://daringfireball.net/thetalkshow/rss",
                                               "ATP":"http://atp.fm/episodes?format=rss",
                                               "Swift Over Coffee": "https://anchor.fm/s/572fc68/podcast/rss"]
+    
+    
     
     
     var itemSizeFactor: CGFloat = 1.0
@@ -33,19 +37,11 @@ class ViewController: NSViewController   {
         super.viewDidLoad()
 
         configureCollectionView()
+    
         
-        //self.view.addSubview(audioPlayerView)
+        self.buttonPopupPodCast.addItems(withTitles: Array(self.podCasts.keys))
         
-        
-        // fetchData("https://developer.apple.com/news/rss/news.rss")
-        
-        // fetchData(url: "https://daringfireball.net/thetalkshow/rss")
-        
-        // fetchData(url: "http://atp.fm/episodes?format=rss")
-        
-        if let podCastURL = self.podCasts["Swift Over Coffee"] {
-            fetchData(url: podCastURL)
-        }
+        self.buttonPopupPodCast.selectItem(at: 0)
         
     }
 
@@ -60,7 +56,8 @@ class ViewController: NSViewController   {
             
         OperationQueue.main.addOperation(
             { self.collectionView.reloadData()
-                // print(rssItems[0])
+                print(self.rssItems![0])
+                self.collectionView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: .top)
                 self.audioPlayerView.loadAudio(audioFilePath: rssItems[0].url, type: .url, title: rssItems[0].title)
                 
         })
@@ -100,13 +97,31 @@ class ViewController: NSViewController   {
         collectionView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         
     }
+    
+    // MARK:- ViewController: Actions
    
-
+    @IBAction func podCastSelectionChange(_ sender: NSPopUpButton) {
+        
+        guard let item = sender.selectedItem else { return }
+        
+        let podCastTitle = item.title
+        // print("Selected Item: \(item.title)")
+        
+        if let podCastUrl = podCasts[podCastTitle] {
+            fetchData(url: podCastUrl )
+        }
+        else
+        {
+            print("Error selecting Pod Cast with title: \(podCastTitle)")
+        }
+        
+    }
 
 
     
 }
 
+// MARK:- NSCollectionViewDataSource
 extension ViewController: NSCollectionViewDataSource {
     
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
@@ -138,6 +153,7 @@ extension ViewController: NSCollectionViewDataSource {
     }
 }
 
+// MARK:- NSCollectionViewDelegate
 extension ViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
