@@ -86,7 +86,6 @@ class VUAudioPlayerView: NSView {
     func loadAudio(audioFilePath: String, type: filePathType, title: String?)
     {
         
-        
         if let url = URL(string: audioFilePath) {
             
             let playerItem: AVPlayerItem = AVPlayerItem(url: url)
@@ -94,7 +93,7 @@ class VUAudioPlayerView: NSView {
             
             let duration: CMTime = playerItem.asset.duration
             self.currentItemDurationSeconds = Int(duration.seconds)
-            // print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
+            print("Loaded Audio file with duration: \(formattedTime(seconds: self.currentItemDurationSeconds)).")
             self.labelTimeLeft.stringValue = formattedTime(seconds: self.currentItemDurationSeconds)
             self.labelTimeElapsed.stringValue = formattedTimeZero
             self.buttonPlay.title = "Play"
@@ -117,28 +116,31 @@ class VUAudioPlayerView: NSView {
     
     @IBAction func playAudio(sender: NSButton)
     {
+        
         if let player = self.audioPlayer {
             
-            if player.rate == 0 {
-                player.play()
-                playbackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlaybackSlider), userInfo: nil, repeats: true)
-                // RunLoop.main.add(playbackTimer!, forMode: RunLoop.Mode.common)
-                self.playbackSlider.doubleValue = 0.0
-                self.playbackSlider.maxValue = 100.0
-                self.labelTimeLeft.stringValue =  formattedTime(seconds: Int(player.currentItem!.duration.seconds))
-                buttonPlay.title = "Pause"
+            if let currentItem =  player.currentItem {
                 
+                if player.rate == 0 {
+                    player.play()
+                    playbackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updatePlaybackSlider), userInfo: nil, repeats: true)
+                    self.playbackSlider.doubleValue = 0.0
+                    self.playbackSlider.maxValue = 100.0
+                
+                    self.labelTimeLeft.stringValue =  formattedTime(seconds: Int(currentItem.duration.seconds))
+                    buttonPlay.title = "Pause"
+                    }
+                 else {
+                        player.pause()
+                        buttonPlay.title = "Play"
+                        playbackTimer?.invalidate()
+                 }
             }
-            else {
-                player.pause()
-                buttonPlay.title = "Play"
-                playbackTimer?.invalidate()
-            }
-           
-            
-     
         }
-    }
+        
+     }
+    
+
     
     @IBAction func stopPlayingAudio(sender: NSButton)
     {
