@@ -59,8 +59,9 @@ class FeedParser : NSObject, XMLParserDelegate {
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)? )
     {
         self.parserCompletionHandler = completionHandler
+ 
+        let request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalCacheData)
         
-        let request = URLRequest(url: URL(string: url)!)
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             
@@ -72,6 +73,10 @@ class FeedParser : NSObject, XMLParserDelegate {
                 
                 return
             }
+            
+            // let dataString: String = String(data: data, encoding: .utf8) ?? "Bad Data"
+            // print("feed data: \(dataString)")
+            
             
             // Parse XML data
             let parser = XMLParser(data: data)

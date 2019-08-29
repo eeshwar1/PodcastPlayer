@@ -55,6 +55,9 @@ class ViewController: NSViewController   {
         feedParser.parseFeed(url: url) { (rssItems) in
             self.rssItems = rssItems
             
+           
+            //print("Podcast Count: \(String(describing: self.rssItems?.count))")
+            
             OperationQueue.main.addOperation(
                 { self.collectionView.reloadData()
                     // print(self.rssItems![0])
