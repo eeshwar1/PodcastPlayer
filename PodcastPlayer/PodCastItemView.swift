@@ -30,6 +30,8 @@ class PodCastItemView: NSCollectionViewItem {
             lblTitle.stringValue = feedItem.title
             lblDatePub.stringValue = feedItem.pubDate
             lblDescription.stringValue = feedItem.description
+            
+            // lblDescription.attributedStringValue
             url = feedItem.url
             title = feedItem.title
             
